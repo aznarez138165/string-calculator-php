@@ -22,46 +22,36 @@ final class StringCalculatorTest extends TestCase
     /**
      * @test
      */
-    public function inputNullParametersOutputZero(): void{
-        $addChecker = $this->stringCalculator->add('');
-
-        $this->assertEquals(0,$addChecker);
+    public function givenNullParametersReturnsZero(): void{
+        $this->assertEquals(0,$this->stringCalculator->add(''));
     }
 
     /**
      * @test
      */
-    public function inputOneParameterOutputNumber(): void{
-        $addChecker = $this->stringCalculator->add('1');
-
-        $this->assertEquals(1,$addChecker);
+    public function givenOneParameterReturnsNumber(): void{
+        $this->assertEquals(1,$this->stringCalculator->add('1'));
     }
 
     /**
      * @test
      */
-    public function inputTwoParametersOutputAdd(): void{
-        $addChecker = $this->stringCalculator->add('1,2');
-
-        $this->assertEquals(3,$addChecker);
+    public function givenTwoParametersReturnsAddition(): void{
+        $this->assertEquals(3,$this->stringCalculator->add('1,2'));
     }
 
     /**
      * @test
      */
-    public function inputFiveParametersOutputAdd(): void{
-        $addChecker = $this->stringCalculator->add('1,2,3,4,5');
-
-        $this->assertEquals(15,$addChecker);
+    public function givenFiveParametersReturnsAddition(): void{
+        $this->assertEquals(15,$this->stringCalculator->add('1,2,3,4,5'));
     }
 
     /**
      * @test
      */
-    public function inputTwoParametersWithLineBreakOutputAdd(): void{
-        $addChecker = $this->stringCalculator->add("1,2\n3");
-
-        $this->assertEquals(3,$addChecker);
+    public function givenThreeParametersWithLineBreakReturnsAddition(): void{
+        $this->assertEquals(6,$this->stringCalculator->add("1\n2,3"));
     }
 
 
