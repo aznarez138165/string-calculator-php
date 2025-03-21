@@ -32,24 +32,6 @@ class StringCalculator
     }
 
     /**
-     * @param array $numbersArray
-     * @return bool
-     */
-    public function isOnlyOneNumber(array $numbersArray): bool
-    {
-        return count($numbersArray) === 1;
-    }
-
-    /**
-     * @param array $numbersArray
-     * @return float|int
-     */
-    public function getAdd(array $numbersArray): int|float
-    {
-        return array_sum(array_map('intval', $numbersArray));
-    }
-
-    /**
      * @param string $numbers
      * @return bool
      */
@@ -66,8 +48,25 @@ class StringCalculator
     {
         $cleanedArray = str_replace("\n", ",", $numbers);
 
-        $numbersArray = explode(",", $cleanedArray);
-        return $numbersArray;
+        return explode(",", $cleanedArray);
+    }
+
+    /**
+     * @param array $numbersArray
+     * @return bool
+     */
+    public function isOnlyOneNumber(array $numbersArray): bool
+    {
+        return count($numbersArray) === 1;
+    }
+
+    /**
+     * @param array $numbersArray
+     * @return float|int
+     */
+    public function getAdd(array $numbersArray): int|float
+    {
+        return array_sum(array_map('intval', $numbersArray));
     }
 
 }
