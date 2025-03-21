@@ -17,12 +17,12 @@ class StringCalculator
      *
      * @return int
      */
-    public function Add(string $numbers): int {
+    public function add(string $numbers): int {
         if($this->isEmpty($numbers)){
             return 0;
         }
 
-        $numbersArray = explode(",", $numbers);
+        $numbersArray = $this->getCleanedArray($numbers);
 
         if($this->isOnlyOneNumber($numbersArray)){
             return intval($numbersArray[0]);
@@ -56,6 +56,18 @@ class StringCalculator
     public function isEmpty(string $numbers): bool
     {
         return empty($numbers);
+    }
+
+    /**
+     * @param string $numbers
+     * @return string[]
+     */
+    public function getCleanedArray(string $numbers): array
+    {
+        $cleanedArray = str_replace("\n", ",", $numbers);
+
+        $numbersArray = explode(",", $cleanedArray);
+        return $numbersArray;
     }
 
 }

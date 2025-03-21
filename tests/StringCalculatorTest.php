@@ -23,7 +23,7 @@ final class StringCalculatorTest extends TestCase
      * @test
      */
     public function inputNullParametersOutputZero(): void{
-        $addChecker = $this->stringCalculator->Add("");
+        $addChecker = $this->stringCalculator->add('');
 
         $this->assertEquals(0,$addChecker);
     }
@@ -32,7 +32,7 @@ final class StringCalculatorTest extends TestCase
      * @test
      */
     public function inputOneParameterOutputNumber(): void{
-        $addChecker = $this->stringCalculator->Add("1");
+        $addChecker = $this->stringCalculator->add('1');
 
         $this->assertEquals(1,$addChecker);
     }
@@ -41,7 +41,7 @@ final class StringCalculatorTest extends TestCase
      * @test
      */
     public function inputTwoParametersOutputAdd(): void{
-        $addChecker = $this->stringCalculator->Add("1,2");
+        $addChecker = $this->stringCalculator->add('1,2');
 
         $this->assertEquals(3,$addChecker);
     }
@@ -50,9 +50,18 @@ final class StringCalculatorTest extends TestCase
      * @test
      */
     public function inputFiveParametersOutputAdd(): void{
-        $addChecker = $this->stringCalculator->Add("1,2,3,4,5");
+        $addChecker = $this->stringCalculator->add('1,2,3,4,5');
 
         $this->assertEquals(15,$addChecker);
+    }
+
+    /**
+     * @test
+     */
+    public function inputTwoParametersWithLineBreakOutputAdd(): void{
+        $addChecker = $this->stringCalculator->add("1,2\n3");
+
+        $this->assertEquals(3,$addChecker);
     }
 
 
