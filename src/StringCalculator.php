@@ -18,7 +18,7 @@ class StringCalculator
      * @return int
      */
     public function Add(string $numbers): int {
-        if(empty($numbers)){
+        if($this->isEmpty($numbers)){
             return 0;
         }
 
@@ -28,7 +28,7 @@ class StringCalculator
             return intval($numbersArray[0]);
         }
 
-        return array_sum(array_map('intval', $numbersArray));
+        return $this->getAdd($numbersArray);
     }
 
     /**
@@ -38,6 +38,24 @@ class StringCalculator
     public function isOnlyOneNumber(array $numbersArray): bool
     {
         return count($numbersArray) === 1;
+    }
+
+    /**
+     * @param array $numbersArray
+     * @return float|int
+     */
+    public function getAdd(array $numbersArray): int|float
+    {
+        return array_sum(array_map('intval', $numbersArray));
+    }
+
+    /**
+     * @param string $numbers
+     * @return bool
+     */
+    public function isEmpty(string $numbers): bool
+    {
+        return empty($numbers);
     }
 
 }
