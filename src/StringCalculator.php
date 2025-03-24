@@ -25,7 +25,9 @@ class StringCalculator
             return 0;
         }
 
-        $numbersArray = $this->getCleanedArray($numbers);
+        $cleanedNumbersArray = $this->getCleanedArray($numbers);
+
+        $numbersArray = $this->getNumbersArray($cleanedNumbersArray);
 
         $this->checkNegativeNumbers($numbersArray);
 
@@ -98,6 +100,21 @@ class StringCalculator
         if (!empty($negativos) > 0) {
             throw new \InvalidArgumentException("negativos no soportados: " . implode(", ", $negativos));
         }
+    }
+
+    /**
+     * @param array $cleanedNumbersArray
+     * @return array
+     */
+    public function getNumbersArray(array $cleanedNumbersArray): array
+    {
+        $numbersArray = [];
+        foreach ($cleanedNumbersArray as $number) {
+            if (intval($number) < 1000) {
+                $numbersArray[] = $number;
+            }
+        }
+        return $numbersArray;
     }
 
 }

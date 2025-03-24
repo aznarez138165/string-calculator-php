@@ -71,4 +71,10 @@ final class StringCalculatorTest extends TestCase
         $this->stringCalculator->add("1,-2,-3");
     }
 
+    /**
+     * @test
+     */
+    public function givenNumberGreaterThanThousandReturnsAdditionIgnoringNumber(): void{
+        $this->assertEquals(3,$this->stringCalculator->add("1,2,1001"));
+    }
 }
