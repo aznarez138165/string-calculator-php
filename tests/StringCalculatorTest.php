@@ -57,8 +57,18 @@ final class StringCalculatorTest extends TestCase
     /**
      * @test
      */
-    public function givenTwoParametersWithIndicatedDelimeterReturnsAddition(): void{
+    public function givenTwoParametersWithCustomDelimeterReturnsAddition(): void{
         $this->assertEquals(3,$this->stringCalculator->add("//;\n1;2"));
+    }
+
+    /**
+     * @test
+     */
+    public function givenNegativeNumbersThrowsException(): void{
+        $this->expectException(\InvalidArgumentException::class);
+        $this->expectExceptionMessage("negativos no soportados: -2, -3");
+
+        $this->stringCalculator->add("1,-2,-3");
     }
 
 }

@@ -2,7 +2,9 @@
 
 namespace Deg540\StringCalculatorPHP;
 
+use http\Exception\InvalidArgumentException;
 use function PHPUnit\Framework\isNull;
+use function PHPUnit\Framework\throwException;
 
 class StringCalculator
 {
@@ -16,6 +18,7 @@ class StringCalculator
      * @param string $numbers
      *
      * @return int
+     * @throws \InvalidArgumentException
      */
     public function add(string $numbers): int {
         if($this->isEmpty($numbers)){
@@ -23,6 +26,8 @@ class StringCalculator
         }
 
         $numbersArray = $this->getCleanedArray($numbers);
+
+        $this->checkNegativeNumbers($numbersArray);
 
         if($this->isOnlyOneNumber($numbersArray)){
             return intval($numbersArray[0]);
@@ -75,6 +80,24 @@ class StringCalculator
     public function getAdd(array $numbersArray): int|float
     {
         return array_sum(array_map('intval', $numbersArray));
+    }
+
+    /**
+     * @param array $numbersArray
+     * @return void
+     */
+    public function checkNegativeNumbers(array $numbersArray): void
+    {
+        $negativos = [];
+        foreach ($numbersArray as $number) {
+            if (intval($number) < 0) {
+                $negativos[] = $number;
+            }
+        }
+
+        if (!empty($negativos) > 0) {
+            throw new \InvalidArgumentException("negativos no soportados: " . implode(", ", $negativos));
+        }
     }
 
 }
