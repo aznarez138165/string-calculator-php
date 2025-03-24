@@ -46,9 +46,17 @@ class StringCalculator
      */
     public function getCleanedArray(string $numbers): array
     {
-        $cleanedArray = str_replace("\n", ",", $numbers);
+        $delimiter = ",";
+        if(str_starts_with($numbers, "//")){
+            preg_match("/\/\/(.+)\n/", $numbers, $matches);
+            if (!empty($matches[1])) {
+                $delimiter = $matches[1];
+            }
 
-        return explode(",", $cleanedArray);
+            $numbers = substr($numbers, strpos($numbers, "\n") + 1);
+        }
+
+        return preg_split("/[$delimiter\n]/", $numbers);
     }
 
     /**
