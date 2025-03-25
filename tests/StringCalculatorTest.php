@@ -22,42 +22,42 @@ final class StringCalculatorTest extends TestCase
     /**
      * @test
      */
-    public function givenNullParametersReturnsZero(): void{
+    public function givenNullNumberReturnsZero(): void{
         $this->assertEquals(0,$this->stringCalculator->add(''));
     }
 
     /**
      * @test
      */
-    public function givenOneParameterReturnsNumber(): void{
+    public function givenOneNumberReturnsNumber(): void{
         $this->assertEquals(1,$this->stringCalculator->add('1'));
     }
 
     /**
      * @test
      */
-    public function givenTwoParametersReturnsAddition(): void{
+    public function givenTwoNumbersReturnsSumOfNumbers(): void{
         $this->assertEquals(3,$this->stringCalculator->add('1,2'));
     }
 
     /**
      * @test
      */
-    public function givenFiveParametersReturnsAddition(): void{
+    public function givenFiveNumbersReturnsSumOfNumbers(): void{
         $this->assertEquals(15,$this->stringCalculator->add('1,2,3,4,5'));
     }
 
     /**
      * @test
      */
-    public function givenThreeParametersWithLineBreakReturnsAddition(): void{
+    public function givenNumbersWithLineBreakReturnsSumOfNumbers(): void{
         $this->assertEquals(6,$this->stringCalculator->add("1\n2,3"));
     }
 
     /**
      * @test
      */
-    public function givenTwoParametersWithCustomDelimeterReturnsAddition(): void{
+    public function givenNumbersWithCustomDelimeterReturnsSumOfNumbers(): void{
         $this->assertEquals(3,$this->stringCalculator->add("//[;]\n1;2"));
     }
 
@@ -74,14 +74,14 @@ final class StringCalculatorTest extends TestCase
     /**
      * @test
      */
-    public function givenNumberGreaterThanThousandReturnsAdditionIgnoringNumber(): void{
+    public function givenNumberGreaterThanThousandReturnsSumOfNumbersIgnoringNumber(): void{
         $this->assertEquals(3,$this->stringCalculator->add("1,2,1001"));
     }
 
     /**
      * @test
      */
-    public function givenDelimeterMoreThanOneCharacterReturnsAddition(): void{
+    public function givenDelimeterWithMoreThanOneCharacterReturnsSumOfNumbers(): void{
         $this->assertEquals(6,$this->stringCalculator->add("//[***]\n1***2***3"));
     }
 }

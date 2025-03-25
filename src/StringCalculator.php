@@ -35,7 +35,7 @@ class StringCalculator
             return intval($numbersArray[0]);
         }
 
-        return $this->getAdd($numbersArray);
+        return $this->getSum($numbersArray);
     }
 
     /**
@@ -110,7 +110,7 @@ class StringCalculator
      * @param array $numbersArray
      * @return float|int
      */
-    private function getAdd(array $numbersArray): int|float
+    private function getSum(array $numbersArray): int|float
     {
         return array_sum(array_map('intval', $numbersArray));
     }
