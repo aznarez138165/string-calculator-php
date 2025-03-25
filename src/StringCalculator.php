@@ -21,7 +21,7 @@ class StringCalculator
      * @throws \InvalidArgumentException
      */
     public function add(string $numbers): int {
-        if($this->isEmpty($numbers)){
+        if ($this->isEmpty($numbers)) {
             return 0;
         }
 
@@ -31,7 +31,7 @@ class StringCalculator
 
         $this->checkNegativeNumbers($numbersArray);
 
-        if($this->isOnlyOneNumber($numbersArray)){
+        if ($this->isOnlyOneNumber($numbersArray)) {
             return intval($numbersArray[0]);
         }
 
@@ -51,18 +51,16 @@ class StringCalculator
      * @param string $numbers
      * @return string[]
      */
-    public function getCleanedArray(string $numbers): array
+    private function getCleanedArray(string $numbers): array
     {
         $delimiter = ",";
-        if(str_starts_with($numbers, "//")){
-            preg_match("/\/\/(.+)\n/", $numbers, $matches);
-            if (!empty($matches[1])) {
-                $delimiter = $matches[1];
+        if (str_starts_with($numbers, "//")) {
+            if (preg_match("/\/\/\[(.+)]\n/", $numbers, $matches)) {
+                $delimiter = preg_quote($matches[1],'/');
             }
 
             $numbers = substr($numbers, strpos($numbers, "\n") + 1);
         }
-
         return preg_split("/[$delimiter\n]/", $numbers);
     }
 
@@ -70,7 +68,7 @@ class StringCalculator
      * @param array $numbersArray
      * @return bool
      */
-    public function isOnlyOneNumber(array $numbersArray): bool
+    private function isOnlyOneNumber(array $numbersArray): bool
     {
         return count($numbersArray) === 1;
     }
@@ -79,7 +77,7 @@ class StringCalculator
      * @param array $numbersArray
      * @return float|int
      */
-    public function getAdd(array $numbersArray): int|float
+    private function getAdd(array $numbersArray): int|float
     {
         return array_sum(array_map('intval', $numbersArray));
     }
@@ -88,7 +86,7 @@ class StringCalculator
      * @param array $numbersArray
      * @return void
      */
-    public function checkNegativeNumbers(array $numbersArray): void
+    private function checkNegativeNumbers(array $numbersArray): void
     {
         $negativos = [];
         foreach ($numbersArray as $number) {
@@ -106,7 +104,7 @@ class StringCalculator
      * @param array $cleanedNumbersArray
      * @return array
      */
-    public function getNumbersArray(array $cleanedNumbersArray): array
+    private function getNumbersArray(array $cleanedNumbersArray): array
     {
         $numbersArray = [];
         foreach ($cleanedNumbersArray as $number) {

@@ -58,7 +58,7 @@ final class StringCalculatorTest extends TestCase
      * @test
      */
     public function givenTwoParametersWithCustomDelimeterReturnsAddition(): void{
-        $this->assertEquals(3,$this->stringCalculator->add("//;\n1;2"));
+        $this->assertEquals(3,$this->stringCalculator->add("//[;]\n1;2"));
     }
 
     /**
@@ -76,5 +76,12 @@ final class StringCalculatorTest extends TestCase
      */
     public function givenNumberGreaterThanThousandReturnsAdditionIgnoringNumber(): void{
         $this->assertEquals(3,$this->stringCalculator->add("1,2,1001"));
+    }
+
+    /**
+     * @test
+     */
+    public function givenDelimeterMoreThanOneCharacterReturnsAddition(): void{
+        $this->assertEquals(6,$this->stringCalculator->add("//[***]\n1***2***3"));
     }
 }
