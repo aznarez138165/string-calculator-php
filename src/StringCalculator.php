@@ -61,6 +61,7 @@ class StringCalculator
 
             $numbers = substr($numbers, strpos($numbers, "\n") + 1);
         }
+
         return preg_split("/[$delimiter\n]/", $numbers);
     }
 
@@ -76,6 +77,7 @@ class StringCalculator
                 $numbersArray[] = $number;
             }
         }
+
         return $numbersArray;
     }
 
@@ -93,6 +95,7 @@ class StringCalculator
         }
 
         if (!empty($negativos) > 0) {
+
             throw new \InvalidArgumentException("negativos no soportados: " . implode(", ", $negativos));
         }
     }

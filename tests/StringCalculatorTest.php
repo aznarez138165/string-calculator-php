@@ -23,28 +23,28 @@ final class StringCalculatorTest extends TestCase
      * @test
      */
     public function givenNullNumberReturnsZero(): void{
-        $this->assertEquals(0,$this->stringCalculator->add(''));
+        $this->assertEquals(0,$this->stringCalculator->add(""));
     }
 
     /**
      * @test
      */
     public function givenOneNumberReturnsNumber(): void{
-        $this->assertEquals(1,$this->stringCalculator->add('1'));
+        $this->assertEquals(1,$this->stringCalculator->add("1"));
     }
 
     /**
      * @test
      */
     public function givenTwoNumbersReturnsSumOfNumbers(): void{
-        $this->assertEquals(3,$this->stringCalculator->add('1,2'));
+        $this->assertEquals(3,$this->stringCalculator->add("1,2"));
     }
 
     /**
      * @test
      */
-    public function givenFiveNumbersReturnsSumOfNumbers(): void{
-        $this->assertEquals(15,$this->stringCalculator->add('1,2,3,4,5'));
+    public function givenNumbersReturnsSumOfNumbers(): void{
+        $this->assertEquals(15,$this->stringCalculator->add("1,2,3,4,5"));
     }
 
     /**
@@ -84,4 +84,19 @@ final class StringCalculatorTest extends TestCase
     public function givenDelimeterWithMoreThanOneCharacterReturnsSumOfNumbers(): void{
         $this->assertEquals(6,$this->stringCalculator->add("//[***]\n1***2***3"));
     }
+
+    /**
+     * @test
+     */
+    public function givenTwoDelimetersReturnsSumOfNumbers(): void{
+        $this->assertEquals(6,$this->stringCalculator->add("//[*][%]\n1*2%3"));
+    }
+
+    /**
+     * @test
+     */
+    public function givenThreeDelimetersReturnsSumOfNumbers(): void{
+        $this->assertEquals(7,$this->stringCalculator->add("//[*][%][&&]\n1*2%3&&1"));
+    }
+
 }
