@@ -25,9 +25,9 @@ class StringCalculator
             return 0;
         }
 
-        $cleanedNumbersArray = $this->getCleanedArray($numbers);
+        $cleanedString = $this->getCleanedString($numbers);
 
-        $numbersArray = $this->getNumbersArray($cleanedNumbersArray);
+        $numbersArray = $this->getNumbersArray($cleanedString);
 
         $this->checkNegativeNumbers($numbersArray);
 
@@ -51,7 +51,7 @@ class StringCalculator
      * @param string $numbers
      * @return string[]
      */
-    private function getCleanedArray(string $numbers): array
+    private function getCleanedString(string $numbers): array
     {
         $delimiter = ",";
         if (str_starts_with($numbers, "//")) {
