@@ -88,15 +88,15 @@ final class StringCalculatorTest extends TestCase
     /**
      * @test
      */
-    public function givenTwoDelimetersReturnsSumOfNumbers(): void{
+    public function givenMoreThanOneDelimeterReturnsSumOfNumbers(): void{
         $this->assertEquals(6,$this->stringCalculator->add("//[*][%]\n1*2%3"));
     }
 
     /**
      * @test
      */
-    public function givenThreeDelimetersReturnsSumOfNumbers(): void{
-        $this->assertEquals(7,$this->stringCalculator->add("//[*][%][&&]\n1*2%3&&1"));
+    public function givenMoreThanOneDelimeterWithMoreThanOneCharacterReturnsSumOfNumbers(): void{
+        $this->assertEquals(7,$this->stringCalculator->add("//[**][%%][&&]\n1**2%%3&&1"));
     }
 
 }
