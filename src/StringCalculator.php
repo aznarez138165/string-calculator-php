@@ -65,21 +65,18 @@ class StringCalculator
     }
 
     /**
-     * @param array $numbersArray
-     * @return bool
+     * @param array $cleanedNumbersArray
+     * @return array
      */
-    private function isOnlyOneNumber(array $numbersArray): bool
+    private function getNumbersArray(array $cleanedNumbersArray): array
     {
-        return count($numbersArray) === 1;
-    }
-
-    /**
-     * @param array $numbersArray
-     * @return float|int
-     */
-    private function getAdd(array $numbersArray): int|float
-    {
-        return array_sum(array_map('intval', $numbersArray));
+        $numbersArray = [];
+        foreach ($cleanedNumbersArray as $number) {
+            if (intval($number) < 1000) {
+                $numbersArray[] = $number;
+            }
+        }
+        return $numbersArray;
     }
 
     /**
@@ -101,18 +98,21 @@ class StringCalculator
     }
 
     /**
-     * @param array $cleanedNumbersArray
-     * @return array
+     * @param array $numbersArray
+     * @return bool
      */
-    private function getNumbersArray(array $cleanedNumbersArray): array
+    private function isOnlyOneNumber(array $numbersArray): bool
     {
-        $numbersArray = [];
-        foreach ($cleanedNumbersArray as $number) {
-            if (intval($number) < 1000) {
-                $numbersArray[] = $number;
-            }
-        }
-        return $numbersArray;
+        return count($numbersArray) === 1;
+    }
+
+    /**
+     * @param array $numbersArray
+     * @return float|int
+     */
+    private function getAdd(array $numbersArray): int|float
+    {
+        return array_sum(array_map('intval', $numbersArray));
     }
 
 }
